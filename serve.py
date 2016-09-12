@@ -1,7 +1,11 @@
 #!/usr/bin/python
 import os
 import threading
-from time import sleep
+from time import sleep, time
+
+import datetime
+
+from settings import settings
 
 from bin import communication, monitor
 Communication = communication.Communication()
@@ -20,13 +24,29 @@ def fileCheck():
 
 
 def start():
-    Monitor.setData(FILE)
-    t = threading.Timer(3, start())
-    t.start()
+    while True:
+        print datetime.datetime.now()
+        if not Monitor.setData(FILE):
+            print 'We hit rock bottom'
+            return False
+        sleep(5)
+
+
+def runServer():
+    print 'serving at http://127.0.0.1:' + str(settings.PORT)
+    Communication.runServer(FILE_DIR)
+
+
+def runTimer():
+    start()
+
 
 if __name__ == "__main__":
     if fileCheck():
-        start()
-        Communication.runServer(FILE_DIR)
+        timerThread = threading.Thread(target=start())
+        timerThread.start()
+        serverThread = threading.Thread(target=runServer())
+        serverThread.start()
+
     else:
         print 'Sorry, there is no file to serve.'

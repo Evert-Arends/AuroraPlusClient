@@ -8,8 +8,12 @@ class Monitor:
         print 'Monitoring...'
 
     def setData(self, FILE):
-        data = self._readData()
-        self._writeData(FILE, data)
+        try:
+            data = self._readData()
+            self._writeData(FILE, data)
+            return True
+        except:
+            return False
 
     def _readData(self):
         pythonFile = (settings.BASE_DIR + '/bin/getData.py')
@@ -23,7 +27,6 @@ class Monitor:
 
     def _writeData(self, FILE, data):
         if os.path.isfile(FILE):
-            # data = (str(data) + "\n")
             open(FILE, 'a').write(data)  # Write to existing json file
         else:
             open(FILE, 'w+').write(data)  # Create new json file
