@@ -23,7 +23,7 @@ class Monitor:
 
     def _writeData(self, FILE, data):
         if os.path.isfile(FILE):
-            data = (str(data) + "\n")
+            # data = (str(data) + "\n")
             open(FILE, 'a').write(data)  # Write to existing json file
         else:
             open(FILE, 'w+').write(data)  # Create new json file

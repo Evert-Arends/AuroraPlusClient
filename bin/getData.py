@@ -4,12 +4,10 @@ import datetime
 
 class GetData:
     def __init__(self):
-        print 'Getting data'
-
+        pass
     def test(self):
-        date = 'teetetetet'
-        date += 'ok'
-        return date + 'ok'
+        date = datetime.datetime.now()
+        return date
 
 if __name__ == "__main__":
     G = GetData()
