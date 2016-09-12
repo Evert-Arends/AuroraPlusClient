@@ -2,9 +2,8 @@
 import os
 import threading
 from time import sleep, time
-
 import datetime
-
+import sys
 from settings import settings
 
 from bin import communication, monitor
@@ -29,24 +28,22 @@ def start():
         if not Monitor.setData(FILE):
             print 'We hit rock bottom'
             return False
-        sleep(5)
+        sleep(settings.INTERVAL)
 
 
 def runServer():
     print 'serving at http://127.0.0.1:' + str(settings.PORT)
-    Communication.runServer(FILE_DIR)
-
-
-def runTimer():
-    start()
-
+    try:
+        Communication.runServer(FILE_DIR)
+    except ValueError:
+        sys.exit("Socket not available.")
 
 if __name__ == "__main__":
     if fileCheck():
-        timerThread = threading.Thread(target=start())
+        # Spawning a thread both of them.
+        timerThread = threading.Thread(target=start)
         timerThread.start()
-        serverThread = threading.Thread(target=runServer())
+        serverThread = threading.Thread(target=runServer)
         serverThread.start()
-
     else:
         print 'Sorry, there is no file to serve.'
