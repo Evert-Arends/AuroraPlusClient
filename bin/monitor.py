@@ -1,11 +1,22 @@
 import os
 import subprocess
 from settings import settings
+from getData import GetData
+
+dataCollection = GetData()
 
 
 class Monitor:
     def __init__(self):
         print 'Monitoring...'
+
+    @staticmethod
+    def getLoadAverage():
+        load = dataCollection.uptime_load_average()
+        if not load:
+            return False
+        else:
+            return load
 
     def setData(self, FILE):
         try:
