@@ -8,7 +8,11 @@ def load_average():
     if load:
         return load
     else:
-        return False
+        return
+
+
+def network_load_average():
+    return Monitor.GetNetworkLoad()
 
 if __name__ == "__main__":
-    print load_average()
+    print network_load_average()

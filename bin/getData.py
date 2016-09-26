@@ -1,4 +1,7 @@
+from collections import namedtuple
 from subprocess import check_output
+import psutil
+from time import sleep
 
 
 class GetData:
@@ -10,7 +13,7 @@ class GetData:
         if uptime:
             return uptime
         else:
-            return False
+            return
 
     def uptime_load_average(self):
         """
@@ -28,12 +31,31 @@ class GetData:
         five_minutes = uptime_data[14][:-1].upper()
         fifteen_minutes = uptime_data[15][:-1].upper()
 
-        load_average = ('%s;%s;%s' % (one_minute, five_minutes, fifteen_minutes))
+        load_average = ('%s;%s;%s' % one_minute, five_minutes, fifteen_minutes)
         if not load_average:
-            return False
+            return
         else:
             return load_average
 
+    def network_usage(self):
+        network_usage = psutil.net_io_counters(pernic=False)
+        previous_received = network_usage.bytes_recv
+        previous_sent = network_usage.bytes_sent
+
+        sleep(1)
+
+        network_usage = psutil.net_io_counters(pernic=False)
+        current_received = network_usage.bytes_recv
+        current_sent = network_usage.bytes_sent
+
+        diff_received = (current_received - previous_received)
+        diff_sent = (current_sent - previous_sent)
+
+        network = namedtuple('network', 'received sent')
+        total = network(diff_received, diff_sent)
+
+        # Return data send in and out per second
+        return total
 
 if __name__ == "__main__":
     G = GetData()
