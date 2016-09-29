@@ -2,17 +2,14 @@ import json
 
 with open('data.json') as data_file:
     data = json.load(data_file)
-
-    maxServer = data["ServerList"]["totalresultsonaccount"]
-    maxServer = int(maxServer)
-    servers = []
     i = 0
+    servers = 0
+    for server in data["ServerList"]["Servers"]:
+        servers += 1
+        print data
+        print servers
 
-    print 'maxServer = {0}'.format(maxServer)
-
-    while maxServer >= i:
-        ids = (data["ServerList"]["serverdata"][i]["id"])
+    while i <= 2:
+        ids = (data["ServerList"]["Servers"][i]["NetworkUsage"]["Sent"])
         i += 1
         print ids
-
-    print servers

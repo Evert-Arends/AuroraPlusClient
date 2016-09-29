@@ -1,0 +1,69 @@
+{
+    "serverlist": {
+        "totalresultsonaccount": "3",
+        "servers": [
+            {
+                "servername":
+                {
+                    "name": "server1"
+                },
+                "serverinfo":
+                {
+                    "name": "server1",
+                    "id": "1",
+		            "type": "HTTP",
+                    "properties":"All props of server 1",
+                    "status":"Online"
+                },
+                "serverdata":
+                {
+                    "usersonserver":"3",
+                    "cpu": "0,30;0,40;1,12"
+                },
+                "NetworkUsage":
+                {
+                  "sent": "3245",
+                  "received": "327112"
+                }
+            },
+            {
+                "servername":
+                {
+                    "name": "server2"
+                },
+                "serverinfo":
+                {
+                    "name": "server2",
+                    "id": "2",
+		            "type": "SSH",
+                    "properties":"All props of server 2",
+                    "status":"Online"
+                },
+                "serverdata":
+                {
+                    "usersonserver":"3",
+                    "cpu": "0,30;0,40;1,12"
+                }
+            },
+            {
+                "servername":
+                {
+                    "name": "server3"
+                },
+                "serverinfo":
+                {
+                    "name": "server3",
+                    "id": "3",
+		            "type": "DataServer",
+                    "properties":"All props of server 3",
+                    "status":"Online"
+                },
+                "serverdata":
+                {
+                    "usersonserver":"3",
+                    "cpu": "0,30;0,40;1,12"
+                }
+            }
+        ]
+    }
+}

@@ -1,3 +1,5 @@
+import json
+
 import requests
 from settings import settings
 
@@ -7,14 +9,14 @@ class SendRequest:
         pass
 
     def SendFile(self):
-        ServerUrl = settings.SERVER_POST_URL
-        JsonFile = self._GetFile()
-        if not JsonFile:
+        server_url = settings.SERVER_POST_URL
+        json_file = self._GetFile()
+        if not json_file:
             print 'Error while trying to read data.json.'
             return
 
-        SendFile = self._SendHttpRequest(ServerUrl, JsonFile)
-        if not SendFile:
+        send_file = self._SendHttpRequest(server_url, json_file)
+        if not send_file:
             print 'Could not send request.'
             return
         else:
@@ -24,7 +26,9 @@ class SendRequest:
 
     @staticmethod
     def _GetFile():
-        return 'ok'
+        with open('data.json') as data_file:
+            data = json.load(data_file)
+        return data
 
     @staticmethod
     def _SendHttpRequest(url, jsonData):
@@ -36,7 +40,7 @@ class SendRequest:
             return
 
         response = request.status_code
-        if '200' in response:
+        if response == 200:
             return request
         else:
             return

@@ -1,42 +1,92 @@
 {
     "ServerList": {
-        "totalresultsonaccount": "2",
-        "serverdata": [
+        "Servers": [
             {
-                "id": "1",
-		"type": "HTTP",
-		"name": "server1",
-                "data":
+                "ServerName":
                 {
-                    "usersonserver":"3"
+                    "Name": "server1"
                 },
-		"properties":"All props of server 1",
-                "status":"Online",
-                "cpu":"0,30;0,40;1,12"
+                "ServerInfo":
+                {
+                    "Name": "server1",
+                    "ID": "1",
+		            "Type": "HTTP",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
+                },
+                "ServerData":
+                {
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
+                },
+                "NetworkUsage":
+                {
+                    "Sent": "3245",
+                    "Received": "327112"
+                }
             },
             {
-                "id": "2",
-		"type": "SSH",
-		"name": "server2",
-                "data":
+                "ServerName":
                 {
-                    "usersonserver":"3"
+                    "Name": "server2"
                 },
-		"properties":"All props of server 2",
-                "status":"Online",
-                "cpu":"0,30;0,40;1,12"
+                "ServerInfo":
+                {
+                    "Name": "server2",
+                    "ID": "2",
+		            "Type": "SSH",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
+                },
+                "ServerData":
+                {
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
+                },
+                "NetworkUsage":
+                {
+                    "Sent": "3245",
+                    "Received": "327112"
+                }
             },
             {
-                "id": "3",
-		"type": "DataServer",
-		"name": "server3",
-                "data":
+                "ServerName":
                 {
-                    "usersonserver":"3"
+                    "Name": "server3"
                 },
-		"properties":"All props of server 3",
-                "status":"Online",
-                "cpu":"0,30;0,40;1,12"
+                "ServerInfo":
+                {
+                    "Name": "server3",
+                    "ID": "3",
+		            "Type": "DataServer",
+                    "Properties":
+                    {
+                        "Name": "HP ProLiant MicroServer Gen8",
+                        "Proc": "Intel Dual Core Ivy Bridge i3 Core",
+                        "CpuSlots": "5"
+                    },
+                    "Status":"Online"
+                },
+                "ServerData":
+                {
+                    "UsersOnServer":"3",
+                    "Cpu": "0,30;0,40;1,12"
+                },
+                "NetworkUsage":
+                {
+                    "Sent": "3245",
+                    "Received": "327112"
+                }
             }
         ]
     }

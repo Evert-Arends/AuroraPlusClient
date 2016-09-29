@@ -1,5 +1,6 @@
 from getData import GetData
-
+import requests
+import sendHttpRequest
 dataCollection = GetData()
 
 
@@ -21,6 +22,16 @@ class Monitor:
         print load.sent
         print load.received
         return load
+
+    @staticmethod
+    def SendJsonToServer():
+        try:
+            HttpServe = sendHttpRequest.SendRequest()
+            HttpServe.SendFile()
+            return True
+        except requests.ConnectionError:
+            print 'error'
+            return
 
 
 if __name__ == "__main__":

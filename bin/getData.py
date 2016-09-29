@@ -57,6 +57,7 @@ class GetData:
         # Return data send in and out per second
         return total
 
+
 if __name__ == "__main__":
     G = GetData()
     data = G.uptime_load_average()

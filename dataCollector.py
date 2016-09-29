@@ -15,4 +15,5 @@ def network_load_average():
     return Monitor.GetNetworkLoad()
 
 if __name__ == "__main__":
-    print network_load_average()
+    print 'sending HTTP request to server...'
+    Monitor.SendJsonToServer()
