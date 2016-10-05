@@ -1,7 +1,14 @@
+import json
+import os
+import random
+import string
 from collections import namedtuple
 from subprocess import check_output
+import platform
 import psutil
 from time import sleep
+
+from settings import settings
 
 
 class GetData:
@@ -14,6 +21,13 @@ class GetData:
             return uptime
         else:
             return
+
+    def system_hostname(self):
+        server_name = platform.uname()[1]
+        if server_name:
+            return server_name
+        else:
+            return 'Unnamed'
 
     def uptime_load_average(self):
         """
@@ -57,7 +71,27 @@ class GetData:
         # Return data send in and out per second
         return total
 
+    def server_id(self):
+        with open(settings.FILE_DIR + 'details.json') as json_file:
+            data = json.load(json_file)
 
+            server_id = data["ServerDetails"]["ServerKey"]
+
+        if not server_id:
+            return
+        return server_id
+
+    def new_server_id(self):
+        key = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(35))
+        if not key:
+            return
+
+        return key
+
+    def cpu_load(self):
+        load = psutil.cpu_percent()
+        print load
+        return load
 if __name__ == "__main__":
     G = GetData()
     data = G.uptime_load_average()

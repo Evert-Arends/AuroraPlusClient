@@ -25,6 +25,7 @@ class Monitor:
 
     @staticmethod
     def SendJsonToServer():
+        print 'sending HTTP request to server...'
         try:
             HttpServe = sendHttpRequest.SendRequest()
             HttpServe.SendFile()
@@ -33,6 +34,34 @@ class Monitor:
             print 'error'
             return
 
+    @staticmethod
+    def getServerName():
+        server_name = dataCollection.system_hostname()
+        print server_name
+        return server_name
+
+    @staticmethod
+    def getNewServerId():
+        server_id = dataCollection.new_server_id()
+        if not server_id:
+            return
+        return server_id
+
+    @staticmethod
+    def getServerId():
+        server_id = dataCollection.server_id()
+        if not server_id:
+            server_id = Monitor.getNewServerId()
+
+        return server_id
+
+    @staticmethod
+    def getCPULoad():
+        load = dataCollection.cpu_load()
+        if not load:
+            load = 0
+
+        return load
 
 if __name__ == "__main__":
     pass

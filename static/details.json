@@ -1,0 +1,12 @@
+{
+  "ServerDetails": {
+    "ServerKey": "Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN",
+    "CPU_Usage": "0,30;0,40;1,12",
+    "NetworkLoad":
+    {
+      "Sent": "1001",
+      "Received": "2000"
+    },
+    "ServerName": "BermDox"
+  }
+}
