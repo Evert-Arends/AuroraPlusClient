@@ -15,10 +15,10 @@ def network_load_average():
     return Monitor.GetNetworkLoad()
 
 if __name__ == "__main__":
-    # Monitor.SendJsonToServer()
+    Monitor.SendJsonToServer()
     # print Monitor.getServerName()
     # print Monitor.getServerId()
     # print Monitor.getLoadAverage()
     # print Monitor.GetNetworkLoad()
-    print Monitor.getCPULoad()
+    # print Monitor.getCPULoad()
 

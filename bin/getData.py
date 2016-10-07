@@ -90,8 +90,9 @@ class GetData:
 
     def cpu_load(self):
         load = psutil.cpu_percent()
-        print load
+
         return load
+
 if __name__ == "__main__":
     G = GetData()
     data = G.uptime_load_average()

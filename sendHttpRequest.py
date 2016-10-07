@@ -9,7 +9,8 @@ class SendRequest:
         pass
 
     def SendFile(self):
-        server_url = settings.SERVER_POST_URL
+        # server_url = settings.SERVER_POST_URL
+        server_url = settings.SERVER_REGISTER_URL
         json_file = self._GetFile()
         if not json_file:
             print 'Error while trying to read data.json.'

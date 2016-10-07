@@ -1,7 +1,7 @@
 {
   "ServerDetails": {
     "ServerKey": "Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN",
-    "CPU_Usage": "0,30;0,40;1,12",
+    "CPU_Usage": "0,30",
     "NetworkLoad":
     {
       "Sent": "1001",
