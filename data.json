@@ -11,7 +11,7 @@
       "ServerName": "BermDox"
     },
     "Action": {
-      "Register": "True"
+      "Register": "False"
     }
   }
 }

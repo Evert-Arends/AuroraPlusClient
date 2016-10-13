@@ -10,7 +10,7 @@ class SendRequest:
 
     def SendFile(self):
         # server_url = settings.SERVER_POST_URL
-        server_url = settings.SERVER_REGISTER_URL
+        server_url = settings.SERVER_UPDATE_URL
         json_file = self._GetFile()
         if not json_file:
             print 'Error while trying to read data.json.'
@@ -41,10 +41,11 @@ class SendRequest:
             return
 
         response = request.status_code
+        print ('content is at the moment: "' + request.content + '"')
         if response == 200:
             return request
         else:
-            return
+            return False
 
 # example:
 # r = requests.post("https://hackflag.org/forum/xmlhttp.php", cookies=cookie, data={'action': 'dvz_sb_shout',
