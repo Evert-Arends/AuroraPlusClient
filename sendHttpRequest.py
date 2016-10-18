@@ -1,7 +1,7 @@
 import json
-
 import requests
 from settings import settings
+from bin import AESCipher
 
 
 class SendRequest:
@@ -32,6 +32,19 @@ class SendRequest:
         return data
 
     @staticmethod
+    def _EncryptFile(data):
+        if not data:
+            return
+
+        EncryptKey = Monitor.getServerId()
+        Ciper = AESCipher.AESCipher(EncryptKey)
+        EncryptedFile = Ciper.encrypt(data)
+        print EncryptedFile
+
+        return EncryptedFile
+
+
+    @staticmethod
     def _SendHttpRequest(url, jsonData):
         headers = {'content-type': 'application/json'}
         try:
@@ -47,8 +60,3 @@ class SendRequest:
         else:
             return False
 
-# example:
-# r = requests.post("https://hackflag.org/forum/xmlhttp.php", cookies=cookie, data={'action': 'dvz_sb_shout',
-#                                                                                   'text': text,
-#                                                                    'key': 'bd8a90464844abec93c473945b880e54'
-#                                                                                   })
