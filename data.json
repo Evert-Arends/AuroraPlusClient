@@ -2,7 +2,7 @@
   "Server": {
     "ServerDetails": {
       "ServerKey": "Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN",
-      "CPU_Usage": "0,31",
+      "CPU_Usage": "0,30",
       "NetworkLoad":
     {
       "Sent": "1001",
@@ -11,7 +11,10 @@
       "ServerName": "BermDox"
     },
     "Action": {
-      "Register": "False"
+      "Register": "True"
+    },
+    "Time": {
+      "RequestSent": "2016-11-14 10:59:47.416800"
     }
   }
 }

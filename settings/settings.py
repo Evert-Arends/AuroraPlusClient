@@ -1,7 +1,10 @@
 import os
 
+DEBUG = True
+
 PORT = 7800  # Default running port Aurora client script.
-SERVER_PORT = 8000
+
+SERVER_PORT = 8001
 PYTHON_NAME = 'python2.7'  # Aurora is build for python2.7, if you have multiply versions, use this one
 BASE_DIR = os.getcwd()
 FILE_DIR = (BASE_DIR + '/static/')

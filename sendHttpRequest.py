@@ -43,7 +43,6 @@ class SendRequest:
 
         return EncryptedFile
 
-
     @staticmethod
     def _SendHttpRequest(url, jsonData):
         headers = {'content-type': 'application/json'}
