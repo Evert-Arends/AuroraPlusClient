@@ -35,7 +35,7 @@ class StartMonitor:
 
     @staticmethod
     def print_data(MonitorData):
-        print '\-----------------------------------System Diagnostics-------------------------------------\\'
+        print '\-----------------------------------System Statistics--------------------------------------\\'
         print ' Your Network load is at the moment sent: {0} Bytes, and received: {1} Bytes.'.format(MonitorData[3][0],
                                                                                                      MonitorData[3][1])
         print ' Your CPU load is at the moment: {0}%.'.format(MonitorData[2])
