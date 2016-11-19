@@ -8,7 +8,6 @@ from settings import settings
 from settings import constants
 import dataCollector
 
-
 Monitor = monitor.Monitor()
 
 message1 = "Client script running on version: {0}".format(settings.VERSION)
@@ -36,13 +35,14 @@ class StartMonitor:
 
     @staticmethod
     def print_data(MonitorData):
-        print '------------------------------------------------------------------------------------------'
-        print 'Your Network load is at the moment sent: {0} received: {1}'.format(MonitorData[3][0], MonitorData[3][1])
-        print 'Your CPU load is at the moment: {0}'.format(MonitorData[2])
-        print 'Your ServerId is: {0}'.format(MonitorData[1])
-        print 'Your HostName is: {0}'.format(MonitorData[0])
-        print 'This is request: {0}'.format(constants.REQUEST_COUNT)
-        print '------------------------------------------------------------------------------------------'
+        print '\-----------------------------------System Diagnostics-------------------------------------\\'
+        print ' Your Network load is at the moment sent: {0} Bytes, and received: {1} Bytes.'.format(MonitorData[3][0],
+                                                                                                     MonitorData[3][1])
+        print ' Your CPU load is at the moment: {0}%.'.format(MonitorData[2])
+        print ' Your ServerId is: {0}.'.format(MonitorData[1])
+        print ' Your HostName is: {0}.'.format(MonitorData[0])
+        print ' This is request: {0}.'.format(constants.REQUEST_COUNT)
+        print '\------------------------------------------------------------------------------------------\\'
 
     @staticmethod
     def write_data(MonitorData):
