@@ -64,4 +64,7 @@ class Monitor:
         return load
 
 if __name__ == "__main__":
-    pass
+    Monitor = Monitor()
+    Monitor.GetNetworkLoad()
+
+

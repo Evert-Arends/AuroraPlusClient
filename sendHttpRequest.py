@@ -12,6 +12,8 @@ class SendRequest:
         # server_url = settings.SERVER_POST_URL
         server_url = settings.SERVER_UPDATE_URL
         json_file = self._GetFile()
+        json_file = json.dumps(json_file)
+        print json_file
         if not json_file:
             print 'Error while trying to read data.json.'
             return

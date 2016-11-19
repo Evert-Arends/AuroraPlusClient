@@ -9,6 +9,7 @@ import psutil
 from time import sleep
 
 from settings import settings
+time_to_sleep = settings.SLEEP_FOR_ACTIONS
 
 
 class GetData:
@@ -56,7 +57,7 @@ class GetData:
         previous_received = network_usage.bytes_recv
         previous_sent = network_usage.bytes_sent
 
-        sleep(1)
+        sleep(time_to_sleep)
 
         network_usage = psutil.net_io_counters(pernic=False)
         current_received = network_usage.bytes_recv
