@@ -14,7 +14,6 @@ SERVER_URL = ('http://localhost:%s/' % SERVER_PORT)
 SERVER_POST_URL = ('%spost/' % SERVER_URL)
 SERVER_REGISTER_URL = ('%sadd_client/' % SERVER_URL)
 SERVER_UPDATE_URL = ('%supdate_client/' % SERVER_URL)
-REQUEST_COUNT = 0
 SSL_CERT_REQUIRED = True
 VERSION = 1
 SLEEP_FOR_ACTIONS = 1

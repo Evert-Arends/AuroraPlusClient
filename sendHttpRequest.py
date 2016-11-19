@@ -23,8 +23,7 @@ class SendRequest:
             print 'Could not send request.'
             return
         else:
-            print 'Request sent, we are at request: {0}'.format(settings.REQUEST_COUNT)
-            settings.REQUEST_COUNT += 1
+            # print 'Request sent, we are at request: {0}'.format(settings.REQUEST_COUNT)
             return True
 
     @staticmethod
@@ -55,7 +54,7 @@ class SendRequest:
             return
 
         response = request.status_code
-        print ('content is at the moment: "' + request.content + '"')
+        # print ('content is at the moment: "' + request.content + '"')
         if response == 200:
             return request
         else:

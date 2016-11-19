@@ -32,20 +32,11 @@ def get_all_data():
     data[2] = Monitor.getCPULoad()
     load = network_load_average()
     data[3] = load
-    test = load
-    print test
-
     return data
 
 
 if __name__ == "__main__":
-    data = ['ServerName', 'ServerId', 'CPULoad', 'NetworkLoad']
-    data[0] = Monitor.getServerName()
-    data[1] = Monitor.getServerId()
-    data[2] = Monitor.getCPULoad()
-    load = Monitor.GetNetworkLoad()
-    data[3] = load
-    print data[3][1]
+    print get_all_data()
 
 
 

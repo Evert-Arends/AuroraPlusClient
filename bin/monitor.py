@@ -19,13 +19,11 @@ class Monitor:
     @staticmethod
     def GetNetworkLoad():
         load = dataCollection.network_usage()
-        print load.sent
-        print load.received
         return load
 
     @staticmethod
     def SendJsonToServer():
-        print 'sending HTTP request to server...'
+        # print 'sending HTTP request to server...'
         try:
             HttpServe = sendHttpRequest.SendRequest()
             HttpServe.SendFile()
@@ -37,7 +35,6 @@ class Monitor:
     @staticmethod
     def getServerName():
         server_name = dataCollection.system_hostname()
-        print server_name
         return server_name
 
     @staticmethod
