@@ -67,6 +67,7 @@ class GetData:
         diff_sent = (current_sent - previous_sent)
 
         network = namedtuple('network', 'received sent')
+
         total = network(diff_received, diff_sent)
 
         # Return data send in and out per second
