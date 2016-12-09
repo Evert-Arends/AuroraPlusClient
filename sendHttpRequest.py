@@ -1,7 +1,6 @@
 import json
 import requests
 from settings import settings
-from bin import AESCipher
 
 
 class SendRequest:
@@ -31,18 +30,6 @@ class SendRequest:
         with open('data.json') as data_file:
             data = json.load(data_file)
         return data
-
-    @staticmethod
-    def _EncryptFile(data):
-        if not data:
-            return
-
-        EncryptKey = Monitor.getServerId()
-        Ciper = AESCipher.AESCipher(EncryptKey)
-        EncryptedFile = Ciper.encrypt(data)
-        print EncryptedFile
-
-        return EncryptedFile
 
     @staticmethod
     def _SendHttpRequest(url, jsonData):

@@ -1,0 +1,6 @@
+# <-- apt-get -->
+ python-dev
+
+# <-- pip2.7 -->
+psutil
+requests
