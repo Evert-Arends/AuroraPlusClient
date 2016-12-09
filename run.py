@@ -39,6 +39,7 @@ class StartMonitor:
         print ' Your Network load is at the moment sent: {0} Bytes, and received: {1} Bytes.'.format(MonitorData[3][0],
                                                                                                      MonitorData[3][1])
         print ' Your CPU load is at the moment: {0}%.'.format(MonitorData[2])
+        print ' Your RAM usage is at the moment: {0}%.'.format(MonitorData[4])
         print ' Your ServerId is: {0}.'.format(MonitorData[1])
         print ' Your HostName is: {0}.'.format(MonitorData[0])
         print ' This is request: {0}.'.format(constants.REQUEST_COUNT)
@@ -54,6 +55,7 @@ class StartMonitor:
             json_data["Server"]["ServerDetails"]["ServerName"] = MonitorData[0]
             json_data["Server"]["ServerDetails"]["CPU_Usage"] = MonitorData[2]
             json_data["Server"]["ServerDetails"]["ServerKey"] = MonitorData[1]
+            json_data["Server"]["ServerDetails"]["RamUsage"] = MonitorData[4]
 
             f.seek(0)
             f.write(json.dumps(json_data))

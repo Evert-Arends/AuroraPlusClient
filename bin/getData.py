@@ -95,9 +95,13 @@ class GetData:
 
         return load
 
+    def ram_load(self):
+        load = psutil.virtual_memory().percent
+        return load
+
 if __name__ == "__main__":
     G = GetData()
-    data = G.uptime_load_average()
+    data = G.ram_load()
     print data
 
 # Sample: load average: 1.05, 0.70, 5.09

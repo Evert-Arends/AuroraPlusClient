@@ -60,6 +60,14 @@ class Monitor:
 
         return load
 
+    @staticmethod
+    def getRamLoad():
+        load = dataCollection.ram_load()
+        if not load:
+            load = 0
+
+        return load
+
 if __name__ == "__main__":
     Monitor = Monitor()
     Monitor.GetNetworkLoad()

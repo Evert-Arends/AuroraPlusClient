@@ -25,13 +25,19 @@ def network_load_average():
     return load
 
 
+def virtual_memory_load():
+    load = Monitor.getRamLoad()
+    return load
+
+
 def get_all_data():
-    data = ['ServerName', 'ServerId', 'CPULoad', 'NetworkLoad_Sent', 'NetworkLoad_Received']
+    data = ['ServerName', 'ServerId', 'CPULoad', 'NetworkLoad_Sent', 'RamLoad']
     data[0] = Monitor.getServerName()
     data[1] = Monitor.getServerId()
     data[2] = Monitor.getCPULoad()
     load = network_load_average()
     data[3] = load
+    data[4] = Monitor.getRamLoad()
     return data
 
 
