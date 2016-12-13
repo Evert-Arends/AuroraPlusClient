@@ -55,7 +55,7 @@ class StartMonitor:
             json_data["Server"]["ServerDetails"]["ServerName"] = MonitorData[0]
             json_data["Server"]["ServerDetails"]["CPU_Usage"] = MonitorData[2]
             json_data["Server"]["ServerDetails"]["ServerKey"] = MonitorData[1]
-            json_data["Server"]["ServerDetails"]["RamUsage"] = MonitorData[4]
+            json_data["Server"]["ServerDetails"]["Ram_Usage"] = MonitorData[4]
 
             f.seek(0)
             f.write(json.dumps(json_data))
