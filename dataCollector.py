@@ -31,13 +31,15 @@ def virtual_memory_load():
 
 
 def get_all_data():
-    data = ['ServerName', 'ServerId', 'CPULoad', 'NetworkLoad_Sent', 'RamLoad']
+    data = ['ServerName', 'ServerId', 'CPULoad', 'NetworkLoad', 'RamLoad', 'DiskLoad', 'DiskUsage']
     data[0] = Monitor.getServerName()
     data[1] = Monitor.getServerId()
     data[2] = Monitor.getCPULoad()
     load = network_load_average()
     data[3] = load
     data[4] = Monitor.getRamLoad()
+    data[5] = Monitor.getDiskLoad()
+    data[6] = Monitor.getDiskUsage()
     return data
 
 

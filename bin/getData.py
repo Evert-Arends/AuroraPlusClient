@@ -4,6 +4,7 @@ import random
 import string
 from collections import namedtuple
 from subprocess import check_output
+from bin import convert
 import platform
 import psutil
 from time import sleep
@@ -99,10 +100,27 @@ class GetData:
         load = psutil.virtual_memory().percent
         return load
 
+    def disk_load(self):
+        load = psutil.disk_usage('/').percent
+        return load
+
+    def disk_usage(self):
+        disk_usage = psutil.disk_io_counters()
+        read = disk_usage.read_bytes
+        write = disk_usage.write_bytes
+        if write >= 0:
+            write = convert.bytes_2_human_readable(write)
+        if read >= 0:
+            read = convert.bytes_2_human_readable(read)
+
+        total = [read, write]
+        return total
+
 if __name__ == "__main__":
     G = GetData()
-    data = G.ram_load()
+    data = G.disk_load()
     print data
+
 
 # Sample: load average: 1.05, 0.70, 5.09
 #

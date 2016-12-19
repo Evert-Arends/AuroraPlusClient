@@ -68,6 +68,18 @@ class Monitor:
 
         return load
 
+    @staticmethod
+    def getDiskLoad():
+        # Disk usage in percent. (Only the home partition.)
+        load = dataCollection.disk_load()
+        return load
+
+    @staticmethod
+    def getDiskUsage():
+        # Read and write (in that order) in user readable format.
+        load = dataCollection.disk_usage()
+        return load
+
 if __name__ == "__main__":
     Monitor = Monitor()
     Monitor.GetNetworkLoad()
