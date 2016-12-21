@@ -1,3 +1,5 @@
+import json
+
 from getData import GetData
 import requests
 import sendHttpRequest
@@ -80,8 +82,18 @@ class Monitor:
         load = dataCollection.disk_usage()
         return load
 
+    @staticmethod
+    def getLastLogID():
+        with open('data.json', 'r+') as f:
+            json_data = json.load(f)
+            LastID = json_data["Server"]["Messages"]["AlertID"]
+            if LastID:
+                return float(LastID)
+            return
+
+
 if __name__ == "__main__":
     Monitor = Monitor()
-    Monitor.GetNetworkLoad()
+    Monitor.getLastLogID()
 
 

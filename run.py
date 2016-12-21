@@ -7,6 +7,7 @@ from bin import monitor
 from settings import settings
 from settings import constants
 import dataCollector
+import time
 
 Monitor = monitor.Monitor()
 
@@ -22,6 +23,7 @@ class StartMonitor:
     def monitor(self):
         while 1:
             MonitorData = self.collect_data()
+            MonitorData = self.check_need_to_log(MonitorData)
             self.write_data(MonitorData)
             self.upload_data()
             self.update_count_requests()
@@ -44,6 +46,8 @@ class StartMonitor:
         print ' You currently have {0} read, and {1} written.'.format(MonitorData[6][0], MonitorData[6][1])
         print ' Your ServerId is: {0}.'.format(MonitorData[1])
         print ' Your HostName is: {0}.'.format(MonitorData[0])
+        print ' Last reported message ID is: {0}.'.format(MonitorData[8])
+        print ' Last reported message is: {0}.'.format(MonitorData[7])
         print ' This is request: {0}.'.format(constants.REQUEST_COUNT)
         print '\------------------------------------------------------------------------------------------\\'
 
@@ -51,7 +55,7 @@ class StartMonitor:
     def write_data(MonitorData):
         with open('data.json', 'r+') as f:
             json_data = json.load(f)
-            json_data["RequestDetails"]["Time"]["RequestSent"] = str(datetime.datetime.now())
+            json_data["RequestDetails"]["Time"]["RequestSent"] = str(time.time())
             json_data["Server"]["ServerDetails"]["NetworkLoad"]["Sent"] = MonitorData[3][0]
             json_data["Server"]["ServerDetails"]["NetworkLoad"]["Received"] = MonitorData[3][1]
             json_data["Server"]["ServerDetails"]["ServerName"] = MonitorData[0]
@@ -62,6 +66,13 @@ class StartMonitor:
             json_data["Server"]["ServerDetails"]["Disk_Load"]["Read"] = MonitorData[6][0]
             json_data["Server"]["ServerDetails"]["Disk_Load"]["Write"] = MonitorData[6][1]
 
+            if MonitorData[8]:
+                if Monitor.getLastLogID() < float(MonitorData[8]):
+                    json_data["Server"]["Messages"]["Log"] = MonitorData[7]
+                    json_data["Server"]["Messages"]["AlertID"] = MonitorData[8]
+                    json_data["Server"]["Messages"]["Alert"] = True
+                else:
+                    json_data["Server"]["Messages"]["Alert"] = False
             f.seek(0)
             f.write(json.dumps(json_data))
             f.truncate()
@@ -76,6 +87,35 @@ class StartMonitor:
         constants.REQUEST_COUNT += 1
         return constants.REQUEST_COUNT
 
+    def check_need_to_log(self, MonitorData):
+        if not MonitorData:
+            pass
+        CPU = MonitorData[2]
+        RAM = MonitorData[4]
+        if float(CPU) > 44.7:
+            MonitorData = self.log_message('CPU', CPU, MonitorData)
+        elif float(RAM) > 45:
+            MonitorData = self.log_message('RAM', RAM, MonitorData)
+        else:
+            MonitorData = MonitorData
+            MonitorData[7] = 'None'
+            MonitorData[8] = 0
+        return MonitorData
+
+    @staticmethod
+    def log_message(target, spike, MonitorData):
+        if target == 'CPU':
+            message = 'There has been a CPU usage spike of: {0}%!'.format(spike)
+        elif target == 'RAM':
+            message = 'There has been a RAM usage spike of: {0}%!'.format(spike)
+        else:
+            message = 'There is an unexpected spike, we are not sure where it is coming from, ' \
+                      'but the value is: {0}'.format(spike)
+        MonitorData[7] = message
+        LastID = Monitor.getLastLogID()
+        LastID += 1
+        MonitorData[8] = LastID
+        return MonitorData
 
 if __name__ == '__main__':
     StartMonitor = StartMonitor()
