@@ -4,14 +4,16 @@
 import json
 import datetime
 from bin import monitor
-from settings import settings
-from settings import constants
+from ClientSettings import ClientSettings
+from ClientSettings import constants
 import dataCollector
+import settings
 import time
+import sys
 
 Monitor = monitor.Monitor()
 
-message1 = "Client script running on version: {0}".format(settings.VERSION)
+message1 = "Client script running on version: {0}".format(ClientSettings.VERSION)
 message2 = "Your version is still maintained: {0}".format('True')
 
 
@@ -53,7 +55,7 @@ class StartMonitor:
 
     @staticmethod
     def write_data(MonitorData):
-        with open('data.json', 'r+') as f:
+        with open(settings.JSON_FILE, 'r+') as f:
             json_data = json.load(f)
             json_data["RequestDetails"]["Time"]["RequestSent"] = str(time.time())
             json_data["Server"]["ServerDetails"]["NetworkLoad"]["Sent"] = MonitorData[3][0]
@@ -117,6 +119,10 @@ class StartMonitor:
         MonitorData[8] = LastID
         return MonitorData
 
+
 if __name__ == '__main__':
+    Arguments = str(sys.argv)
+    if Arguments[1].lower() == '-r':
+        pass
     StartMonitor = StartMonitor()
     StartMonitor.monitor()

@@ -3,6 +3,8 @@ import json
 from getData import GetData
 import requests
 import sendHttpRequest
+import settings
+
 dataCollection = GetData()
 
 
@@ -84,7 +86,7 @@ class Monitor:
 
     @staticmethod
     def getLastLogID():
-        with open('data.json', 'r+') as f:
+        with open(settings.JSON_FILE, 'r+') as f:
             json_data = json.load(f)
             LastID = json_data["Server"]["Messages"]["AlertID"]
             if LastID:

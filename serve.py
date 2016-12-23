@@ -4,7 +4,7 @@ import threading
 from time import sleep, time
 import datetime
 import sys
-from settings import settings
+from ClientSettings import settings
 
 from bin import communication, monitor
 Communication = communication.Communication()
@@ -34,7 +34,7 @@ def start():
 def runServer():
     print 'serving at http://127.0.0.1:' + str(settings.PORT)
     try:
-        Communication.runServer(FILE_DIR)
+        Communication.run_server(FILE_DIR)
     except ValueError:
         sys.exit("Socket not available.")
 

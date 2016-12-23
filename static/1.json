@@ -1,0 +1,43 @@
+{
+    "ServerList": {
+        "totalresultsonaccount": "3",
+        "serverdata": [
+            {
+                "id": "1",
+		"type": "HTTP",
+		"name": "server1",
+                "data":
+                {
+                    "usersonserver":"3"
+                },
+		"properties":"All props of server 1",
+                "status":"Online",
+                "cpu":"0,30;0,40;1,12"
+            },
+            {
+                "id": "2",
+		"type": "SSH",
+		"name": "server2",
+                "data":
+                {
+                    "usersonserver":"3"
+                },
+		"properties":"All props of server 2",
+                "status":"Online",
+                "cpu":"0,30;0,40;1,12"
+            },
+            {
+                "id": "3",
+		"type": "DataServer",
+		"name": "server3",
+                "data":
+                {
+                    "usersonserver":"3"
+                },
+		"properties":"All props of server 3",
+                "status":"Online",
+                "cpu":"0,30;0,40;1,12"
+            }
+        ]
+    }
+}

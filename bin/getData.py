@@ -9,8 +9,8 @@ import platform
 import psutil
 from time import sleep
 
-from settings import settings
-time_to_sleep = settings.SLEEP_FOR_ACTIONS
+from ClientSettings import ClientSettings
+time_to_sleep = ClientSettings.SLEEP_FOR_ACTIONS
 
 
 class GetData:
@@ -75,7 +75,7 @@ class GetData:
         return total
 
     def server_id(self):
-        with open(settings.FILE_DIR + 'details.json') as json_file:
+        with open(ClientSettings.FILE_DIR + 'details.json') as json_file:
             data = json.load(json_file)
 
             server_id = data["ServerDetails"]["ServerKey"]

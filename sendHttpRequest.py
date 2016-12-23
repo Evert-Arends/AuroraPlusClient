@@ -1,6 +1,7 @@
 import json
 import requests
-from settings import settings
+import settings
+from ClientSettings import ClientSettings
 
 
 class SendRequest:
@@ -8,8 +9,8 @@ class SendRequest:
         pass
 
     def SendFile(self):
-        # server_url = settings.SERVER_POST_URL
-        server_url = settings.SERVER_UPDATE_URL
+        # server_url = ClientSettings.SERVER_POST_URL
+        server_url = ClientSettings.SERVER_UPDATE_URL
         json_file = self._GetFile()
         json_file = json.dumps(json_file)
         print json_file
@@ -22,12 +23,12 @@ class SendRequest:
             print 'Could not send request.'
             return
         else:
-            # print 'Request sent, we are at request: {0}'.format(settings.REQUEST_COUNT)
+            # print 'Request sent, we are at request: {0}'.format(ClientSettings.REQUEST_COUNT)
             return True
 
     @staticmethod
     def _GetFile():
-        with open('data.json') as data_file:
+        with open(settings.JSON_FILE) as data_file:
             data = json.load(data_file)
         return data
 
@@ -35,7 +36,7 @@ class SendRequest:
     def _SendHttpRequest(url, jsonData):
         headers = {'content-type': 'application/json'}
         try:
-            request = requests.post(url, json=jsonData, headers=headers, verify=settings.SSL_CERT_REQUIRED)
+            request = requests.post(url, json=jsonData, headers=headers, verify=ClientSettings.SSL_CERT_REQUIRED)
         except requests.ConnectionError:
             print 'Could not connect to server.'
             return

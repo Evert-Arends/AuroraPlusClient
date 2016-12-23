@@ -12,6 +12,7 @@ FILE = (BASE_DIR + '/static/data.json')
 INTERVAL = 1
 SERVER_URL = ('http://localhost:%s/' % SERVER_PORT)
 SERVER_POST_URL = ('%spost/' % SERVER_URL)
+SERVER_CHECK_KEY_URL = ('%scheck_client_key/' % SERVER_URL)
 SERVER_REGISTER_URL = ('%sadd_client/' % SERVER_URL)
 SERVER_UPDATE_URL = ('%supdate_client/' % SERVER_URL)
 SSL_CERT_REQUIRED = True
