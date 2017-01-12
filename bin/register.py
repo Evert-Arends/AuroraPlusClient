@@ -1,3 +1,4 @@
+from bin import encode
 import uuid
 import communication
 Communication = communication.Communication()

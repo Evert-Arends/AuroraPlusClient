@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+from bin import encode
 import SimpleHTTPServer
 import SocketServer
 import requests
@@ -8,11 +9,13 @@ import os
 from ClientSettings import ClientSettings
 
 PORT = ClientSettings.PORT
+EncodingHandler = encode.EncodingHandler()
 
 
 class Communication:
     def __init__(self):
         pass
+
     @staticmethod
     def run_server(jsonFile):
         # Set dir for app to show
@@ -26,8 +29,9 @@ class Communication:
 
     @staticmethod
     def check_if_key_is_unique(key):
+        # Converting to base64, as expected by the server.
+        key = EncodingHandler.encode(key, 'base64')
         keyList = ['Key', key]
-        # ENCODE INTO BASE64!! (Encoding class in /bin/
         r = requests.post(ClientSettings.SERVER_CHECK_KEY_URL, json=json.dumps(keyList))
         if r.status_code != 204:
             return
