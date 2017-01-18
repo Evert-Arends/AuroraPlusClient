@@ -24,7 +24,7 @@ class Communication:
         Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
         httpd = SocketServer.TCPServer(("", PORT), Handler)
 
-        print "Serving at port", PORT
+        print "Serving at 1port", PORT
         httpd.serve_forever()
 
     @staticmethod

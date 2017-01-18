@@ -14,9 +14,7 @@ class Register:
         if not check:
             print 'This key appears not to be an unique key.'
             return
-        else:
-            print check
-            print type(check)
+        return True
 
     @staticmethod
     def create_key():

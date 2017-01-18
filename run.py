@@ -94,14 +94,15 @@ class StartMonitor:
             pass
         CPU = MonitorData[2]
         RAM = MonitorData[4]
-        if float(CPU) > 44.7:
-            MonitorData = self.log_message('CPU', CPU, MonitorData)
-        elif float(RAM) > 45:
-            MonitorData = self.log_message('RAM', RAM, MonitorData)
+        if float(CPU) > 75:
+            MonitorData = self.log_message(target='CPU', spike=CPU, MonitorData=MonitorData)
+        elif float(RAM) > 75:
+            MonitorData = self.log_message(target='RAM', spike=RAM, MonitorData=MonitorData)
         else:
             MonitorData = MonitorData
             MonitorData[7] = 'None'
             MonitorData[8] = 0
+            self.log_message(target='None', spike=0, MonitorData=MonitorData)
         return MonitorData
 
     @staticmethod
@@ -110,6 +111,8 @@ class StartMonitor:
             message = 'There has been a CPU usage spike of: {0}%!'.format(spike)
         elif target == 'RAM':
             message = 'There has been a RAM usage spike of: {0}%!'.format(spike)
+        elif target == 'None':
+            message = ''
         else:
             message = 'There is an unexpected spike, we are not sure where it is coming from, ' \
                       'but the value is: {0}'.format(spike)
