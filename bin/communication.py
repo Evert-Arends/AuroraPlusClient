@@ -34,6 +34,8 @@ class Communication:
         keyList = ['Key', key]
         r = requests.post(ClientSettings.SERVER_CHECK_KEY_URL, json=json.dumps(keyList))
         if r.status_code != 204:
+            print r.status_code
+            print r.content
             return
 
         return True

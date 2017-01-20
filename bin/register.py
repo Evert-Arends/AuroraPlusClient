@@ -1,3 +1,6 @@
+import random
+import string
+
 from bin import encode
 import uuid
 import communication
@@ -14,11 +17,12 @@ class Register:
         if not check:
             print 'This key appears not to be an unique key.'
             return
-        return True
+        return key
 
     @staticmethod
     def create_key():
-        key = uuid.uuid4()
+        # key = uuid.uuid4()
+        key = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(35))
         return key
 
     @staticmethod

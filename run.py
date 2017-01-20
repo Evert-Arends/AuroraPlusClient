@@ -3,7 +3,7 @@
 # Imports
 import json
 import datetime
-from bin import monitor
+from bin import monitor, register
 from ClientSettings import ClientSettings
 from ClientSettings import constants
 import dataCollector
@@ -124,8 +124,20 @@ class StartMonitor:
 
 
 if __name__ == '__main__':
-    Arguments = str(sys.argv)
+    Arguments = sys.argv
     if Arguments[1].lower() == '-r':
-        pass
+        print 'Registering...'
+        register = register.Register()
+        key = register.register_agent()
+        with open(ClientSettings.FILE_DIR + 'details.json', 'r+') as f:
+            json_data = json.load(f)
+            json_data["ServerDetails"]["ServerKey"] = key
+            f.seek(0)
+            f.write(json.dumps(json_data))
+            f.truncate()
+
+
+
+
     StartMonitor = StartMonitor()
     StartMonitor.monitor()
