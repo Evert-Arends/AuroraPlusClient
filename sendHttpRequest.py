@@ -42,7 +42,7 @@ class SendRequest:
             return
 
         response = request.status_code
-        # print ('content is at the moment: "' + request.content + '"')
+        print ('content is at the moment: "' + request.content + '"')
         if response == 200:
             return request
         else:
