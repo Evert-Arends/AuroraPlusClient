@@ -1,6 +1,6 @@
 import os
 
-DEBUG = True
+DEBUG = False
 
 PORT = 7800  # Default running port Aurora client script.
 
