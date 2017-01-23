@@ -125,19 +125,21 @@ class StartMonitor:
 
 if __name__ == '__main__':
     Arguments = sys.argv
-    if Arguments[1].lower() == '-r':
-        print 'Registering...'
-        register = register.Register()
-        key = register.register_agent()
-        with open(ClientSettings.FILE_DIR + 'details.json', 'r+') as f:
-            json_data = json.load(f)
-            json_data["ServerDetails"]["ServerKey"] = key
-            f.seek(0)
-            f.write(json.dumps(json_data))
-            f.truncate()
-
-
-
+    try:
+        if Arguments[1].lower() == '-r':
+            print 'Registering...'
+            register = register.Register()
+            key = register.register_agent()
+            with open(ClientSettings.FILE_DIR + 'details.json', 'r+') as f:
+                json_data = json.load(f)
+                json_data["ServerDetails"]["ServerKey"] = key
+                f.seek(0)
+                f.write(json.dumps(json_data))
+                f.truncate()
+        else:
+            constants.REGISTER = False
+    except IndexError:
+        constants.REGISTER = False
 
     StartMonitor = StartMonitor()
     StartMonitor.monitor()

@@ -1,7 +1,7 @@
 import json
 import requests
 import settings
-from ClientSettings import ClientSettings
+from ClientSettings import ClientSettings, constants
 
 
 class SendRequest:
@@ -10,7 +10,10 @@ class SendRequest:
 
     def SendFile(self):
         # server_url = ClientSettings.SERVER_POST_URL
-        server_url = ClientSettings.SERVER_UPDATE_URL
+        if constants.REGISTER:
+            server_url = ClientSettings.SERVER_REGISTER_URL
+        else:
+            server_url = ClientSettings.SERVER_UPDATE_URL
         json_file = self._GetFile()
         json_file = json.dumps(json_file)
         print json_file
@@ -24,6 +27,7 @@ class SendRequest:
             return
         else:
             # print 'Request sent, we are at request: {0}'.format(ClientSettings.REQUEST_COUNT)
+            constants.REGISTER = False
             return True
 
     @staticmethod
