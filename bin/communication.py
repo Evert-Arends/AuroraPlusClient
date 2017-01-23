@@ -31,19 +31,18 @@ class Communication:
     def check_if_key_is_unique(key):
         # Converting to base64, as expected by the server.
         key = EncodingHandler.encode(key, 'base64')
-        keyList = ['Key', key]
-        r = requests.post(ClientSettings.SERVER_CHECK_KEY_URL, json=json.dumps(keyList))
+        r = requests.post(ClientSettings.SERVER_CHECK_KEY_URL, json=json.dumps(key))
         if r.status_code != 204:
             print r.status_code
             print r.content
             return
-
+        print r.status_code
         return True
 
 if __name__ == "__main__":
     C = Communication()
     # check = C.check_if_key_is_unique('Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN')
-    check = C.check_if_key_is_unique('Lqdie4ARBhbJtawrmTBCkenmhk9rvqgRzWN')
+    check = C.check_if_key_is_unique('Lqdie4ARBhbJtawrmTBCkenmhb9rvqgRzWN')
     if check:
         print 'It is okay!'
     else:
